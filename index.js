@@ -1,24 +1,17 @@
-function produceDrivingRange(blockRange) {
-	return function inOrOutOfRange(firstRange, secondRange) {
+function produceDrivingRange( blockRange ) {
+  return function ( startingBlock, endingBlock ) {
 
-		let firstRangeInteger = parseInt(firstRange.replace(/th/, ''))
-		let secondRangeInteger = parseInt(secondRange.replace(/th/, ''))
+    let start = parseInt( startingBlock );
+    let end = parseInt( endingBlock );
+    let distanceToTravel = Math.abs( end - start );
+    let difference = blockRange - distanceToTravel;
 
-		if (firstRangeInteger > secondRangeInteger) {
-			if ((firstRangeInteger - secondRangeInteger) < blockRange) {
-				return `within range by ${(firstRangeInteger - secondRangeInteger) - blockRange}`
-			} else {
-				return `${(firstRangeInteger - secondRange) - blockRange} blocks out of range`
-			}
-		} else {
-			if ((secondRangeInteger - firstRangeInteger) > blockRange) {
-				return `${(secondRangeInteger - firstRangeInteger) - blockRange} blocks out of range`
-			} else {
-				return `within range by ${Math.abs((secondRangeInteger - firstRangeInteger) - blockRange)}`
-			}
-		}
-
-	}
+    if ( difference > 0 ) {
+      return `within range by ${difference}`
+    } else {
+      return `${Math.abs(difference)} blocks out of range`
+    }
+  }
 }
 
 function produceTipCalculator(tipPercent) {
@@ -35,11 +28,29 @@ function createDriver() {
 			this.name = name;
 			this.id = ++driverId;
 		}
-
-		
 	}
 }
 
- // is a function that returns a Driver class. The class has reference to a driverId that is 
- // incremented each time a new driver is created. The rest of the code base does not have 
- // access driverId
+
+// function produceDrivingRange(blockRange) {
+// 	return function inOrOutOfRange(firstRange, secondRange) {
+
+// 		let firstRangeInteger = parseInt(firstRange.replace(/th/, ''))
+// 		let secondRangeInteger = parseInt(secondRange.replace(/th/, ''))
+
+// 		if (firstRangeInteger > secondRangeInteger) {
+// 			if ((firstRangeInteger - secondRangeInteger) < blockRange) {
+// 				return `within range by ${(firstRangeInteger - secondRangeInteger) - blockRange}`
+// 			} else {
+// 				return `${(firstRangeInteger - secondRange) - blockRange} blocks out of range`
+// 			}
+// 		} else {
+// 			if ((secondRangeInteger - firstRangeInteger) > blockRange) {
+// 				return `${(secondRangeInteger - firstRangeInteger) - blockRange} blocks out of range`
+// 			} else {
+// 				return `within range by ${Math.abs((secondRangeInteger - firstRangeInteger) - blockRange)}`
+// 			}
+// 		}
+
+// 	}
+// }
